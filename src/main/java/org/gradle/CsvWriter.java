@@ -24,9 +24,10 @@ public class CsvWriter {
 		try(OutputStream out = new FileOutputStream("sample.csv");){
 			for (long i = 0; i < LOOP_COUNT; i++) {
 				CsvConfig cfg = new CsvConfig();
+				
 				Csv.save(list, out, cfg, new BeanListHandler<Person>(Person.class));
 //				out.flush();
-				if(i % 100 == 0){
+				if(i % 1000 == 0){
 					System.out.println("途中経過 = " + i);
 					Thread.sleep(100L);
 				}
