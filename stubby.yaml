@@ -1,0 +1,21 @@
+-  request:
+      method: GET
+      url: /sample_json
+   response:
+      headers:
+         content-type: application/json
+      status: 200
+      body: >
+         [{
+            "id": "1",
+            "name": "メモメモメモ"
+         },{
+            "id": "2",
+            "name": "メモメモメモ"
+         },{
+            "id": "3",
+            "name": "メモメモメモ"
+         },{
+            "id": "4",
+            "name": "メモメモメモ"
+         }]
