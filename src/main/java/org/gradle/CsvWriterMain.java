@@ -18,7 +18,7 @@ import com.orangesignal.csv.CsvConfig;
 import com.orangesignal.csv.manager.CsvBeanManager;
 
 public class CsvWriterMain {
-	static Long LOOP_COUNT = 3L;
+	static Long LOOP_COUNT = Long.MAX_VALUE;
 
 	public static <T> void main(String[] args) throws IOException,
 			CsvDataTypeMismatchException, CsvRequiredFieldEmptyException {
