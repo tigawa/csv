@@ -3,6 +3,9 @@ apply plugin: 'eclipse'
 apply plugin:'application'
 
 version = '1.0'
+sourceCompatibility = 1.7
+targetCompatibility = 1.7
+
 
 jar {
     manifest {
@@ -10,12 +13,6 @@ jar {
                    'Implementation-Version': version
     }
 }
-
-sourceCompatibility = 1.7
-targetCompatibility = 1.7
-
-mainClassName = 'org.gradle.CsvWriter'
-applicationDefaultJvmArgs = ["-Xms32m","-Xmx32m"]
 
 repositories {
     mavenCentral()
@@ -25,6 +22,8 @@ dependencies {
     compile group: 'commons-collections', name: 'commons-collections', version: '3.2'
     compile group: 'com.orangesignal', name: 'orangesignal-csv', version: '2.0.0'
   	compile group: 'io.github.azagniotov', name: 'stubby4j', version: '5.1.1'
+  	compile group: 'org.glassfish.jersey.core', name: 'jersey-client', version: '2.25' // 2.26だと、ClientBilderが使用できない
+  	compile group: 'org.glassfish.jersey.media', name: 'jersey-media-json-jackson', version: '2.25' // json->オブジェクトに変換するライブラリ
     testCompile group: 'junit', name: 'junit', version: '4.+'
 }
 
@@ -47,3 +46,21 @@ task wrapper(type: Wrapper) {
 task stub (type: Exec) {
     commandLine 'java', '-jar', 'build/install/csv/lib/stubby4j-5.1.1.jar', '-w', '-d', 'stubby.yaml'
 }
+
+/* java 実行設定 */
+mainClassName = 'org.gradle.CsvWriter'
+applicationDefaultJvmArgs = ["-Xms16m","-Xmx16m"]
+
+/* lombok */
+buildscript {
+  repositories {
+    maven {
+      url "https://plugins.gradle.org/m2/"
+    }
+  }
+  dependencies {
+    classpath "io.franzbecker:gradle-lombok:1.11"
+  }
+}
+
+apply plugin: "io.franzbecker.gradle-lombok"

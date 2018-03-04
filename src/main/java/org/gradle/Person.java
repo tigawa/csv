@@ -1,16 +1,8 @@
 package org.gradle;
+import lombok.Data;
 
-import org.apache.commons.collections.list.GrowthList;
-
+@Data
 public class Person {
-    private final String name;
-
-    public Person(String name) {
-        this.name = name;
-        new GrowthList();
-    }
-
-    public String getName() {
-        return name;
-    }
+	private long id;
+    private String name;
 }
